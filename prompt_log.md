@@ -409,43 +409,43 @@ Kiểm tra kỹ hệ thống (nhật ký truy cập - logs) để tìm kiếm c�
 - Timestamp: 11:01 AM 23/09/2026
 
 35.
-    - Prompt: Tìm một lỗi được coi là ảo giác AI trong đoạn này với lỗi  CVE-2023-6345
-    CVE-2023-6345 là một lỗ hổng bảo mật nghiêm trọng liên quan đến thư viện đồ họa mã nguồn mở Skia, được sử dụng rộng rãi làm công cụ dựng hình (graphics engine) trong Google Chrome, hệ điều hành ChromeOS, Android và nhiều ứng dụng dựa trên nền tảng Chromium khác.  
+- Prompt: Tìm một lỗi được coi là ảo giác AI trong đoạn này với lỗi  CVE-2023-6345
+CVE-2023-6345 là một lỗ hổng bảo mật nghiêm trọng liên quan đến thư viện đồ họa mã nguồn mở Skia, được sử dụng rộng rãi làm công cụ dựng hình (graphics engine) trong Google Chrome, hệ điều hành ChromeOS, Android và nhiều ứng dụng dựa trên nền tảng Chromium khác.  
 
-    Description (Mô tả) 
+Description (Mô tả) 
 
-    Bản chất: Đây là lỗ hổng Integer Overflow (Tràn số nguyên) được định danh theo CWE-190, xảy ra trong thư viện đồ họa Skia (cụ thể tại hàm xử lý lưới MeshOp::onCombineIfPossible).  
+Bản chất: Đây là lỗ hổng Integer Overflow (Tràn số nguyên) được định danh theo CWE-190, xảy ra trong thư viện đồ họa Skia (cụ thể tại hàm xử lý lưới MeshOp::onCombineIfPossible).  
 
-    Cơ chế: Khi trình duyệt xử lý dữ liệu hình ảnh hoặc cấu trúc đồ họa phức tạp (đặc biệt là tệp đồ họa chứa các thao tác vẽ đa giác/đỉnh), các phép tính toán kích thước bộ nhớ bị tràn số nguyên, dẫn đến việc hệ thống cấp phát một vùng nhớ heap quá nhỏ so với thực tế. Khi dữ liệu thực tế được ghi đè vào, nó gây ra hiện tượng ghi tràn bộ đệm (Heap Out-of-Bounds Write).  
+Cơ chế: Khi trình duyệt xử lý dữ liệu hình ảnh hoặc cấu trúc đồ họa phức tạp (đặc biệt là tệp đồ họa chứa các thao tác vẽ đa giác/đỉnh), các phép tính toán kích thước bộ nhớ bị tràn số nguyên, dẫn đến việc hệ thống cấp phát một vùng nhớ heap quá nhỏ so với thực tế. Khi dữ liệu thực tế được ghi đè vào, nó gây ra hiện tượng ghi tràn bộ đệm (Heap Out-of-Bounds Write).  
 
-    Điểm đáng chú ý: Kẻ tấn công thường lợi dụng lỗ hổng này như một bước đệm Sandbox Escape (Thoát khỏi vùng cách ly sandbox của trình duyệt) sau khi đã xâm nhập thành công vào tiến trình dựng hình (renderer process) bằng một lỗ hổng khác. 
+Điểm đáng chú ý: Kẻ tấn công thường lợi dụng lỗ hổng này như một bước đệm Sandbox Escape (Thoát khỏi vùng cách ly sandbox của trình duyệt) sau khi đã xâm nhập thành công vào tiến trình dựng hình (renderer process) bằng một lỗ hổng khác. 
 
-    Severity (Mức độ nghiêm trọng) 
+Severity (Mức độ nghiêm trọng) 
 
-    Điểm CVSS: 9.6 / 10.0 (Mức Critical - Cực kỳ nghiêm trọng).  
+Điểm CVSS: 9.6 / 10.0 (Mức Critical - Cực kỳ nghiêm trọng).  
 
-    Đặc điểm tấn công: Yêu cầu người dùng tương tác (như truy cập vào một trang web độc hại hoặc mở tệp đồ họa/hình ảnh được thiết kế sẵn). Lỗ hổng này từng bị khai thác dạng zero-day rộng rãi trên thực tế (In-the-wild) trước khi được vá, và nằm trong danh mục các lỗ hổng bị khai thác biết trước của CISA (Known Exploited Vulnerabilities Catalog).  
+Đặc điểm tấn công: Yêu cầu người dùng tương tác (như truy cập vào một trang web độc hại hoặc mở tệp đồ họa/hình ảnh được thiết kế sẵn). Lỗ hổng này từng bị khai thác dạng zero-day rộng rãi trên thực tế (In-the-wild) trước khi được vá, và nằm trong danh mục các lỗ hổng bị khai thác biết trước của CISA (Known Exploited Vulnerabilities Catalog).  
 
-    Consequences (Hậu quả) 
+Consequences (Hậu quả) 
 
-    Khi bị khai thác thành công (thường nằm trong một chuỗi tấn công phức tạp - exploit chain), kẻ tấn công có thể: 
+Khi bị khai thác thành công (thường nằm trong một chuỗi tấn công phức tạp - exploit chain), kẻ tấn công có thể: 
 
-    Thoát khỏi Sandbox của trình duyệt: Vượt qua hàng rào bảo vệ cô lập tiến trình của Chrome để tiếp cận sâu hơn vào hệ thống bên dưới.  
+Thoát khỏi Sandbox của trình duyệt: Vượt qua hàng rào bảo vệ cô lập tiến trình của Chrome để tiếp cận sâu hơn vào hệ thống bên dưới.  
 
-    Thực thi mã lệnh tùy ý (RCE): Chạy mã lệnh độc hại trực tiếp trên hệ điều hành của người dùng dưới quyền hạn của tiến trình ứng dụng.  
+Thực thi mã lệnh tùy ý (RCE): Chạy mã lệnh độc hại trực tiếp trên hệ điều hành của người dùng dưới quyền hạn của tiến trình ứng dụng.  
 
-    Kiểm soát thiết bị: Tạo cơ hội cho kẻ xấu cài cắm phần mềm độc hại, phần mềm gián điệp (spyware) hoặc đánh cắp dữ liệu cá nhân nhạy cảm.  
+Kiểm soát thiết bị: Tạo cơ hội cho kẻ xấu cài cắm phần mềm độc hại, phần mềm gián điệp (spyware) hoặc đánh cắp dữ liệu cá nhân nhạy cảm.  
 
-    Solution (Giải pháp khắc phục) 
+Solution (Giải pháp khắc phục) 
 
-    Giải pháp tối ưu và triệt để nhất: Cập nhật ngay lập tức phần mềm duyệt web lên phiên bản đã được vá lỗi từ nhà phát triển: 
+Giải pháp tối ưu và triệt để nhất: Cập nhật ngay lập tức phần mềm duyệt web lên phiên bản đã được vá lỗi từ nhà phát triển: 
 
-    Đối với Google Chrome: Nâng cấp lên phiên bản 119.0.6045.199 (hoặc các bản phát hành mới hơn trên kênh Stable).  
+Đối với Google Chrome: Nâng cấp lên phiên bản 119.0.6045.199 (hoặc các bản phát hành mới hơn trên kênh Stable).  
 
-    Đối với các trình duyệt nhân Chromium khác (như Microsoft Edge, Brave, Opera...) hoặc các ứng dụng tích hợp sẵn thư viện Skia: Áp dụng bản cập nhật bảo mật mới nhất từ nhà cung cấp tương ứng. 
+Đối với các trình duyệt nhân Chromium khác (như Microsoft Edge, Brave, Opera...) hoặc các ứng dụng tích hợp sẵn thư viện Skia: Áp dụng bản cập nhật bảo mật mới nhất từ nhà cung cấp tương ứng. 
 
-    Giải pháp phòng ngừa: 
-    Luôn bật tính năng tự động cập nhật (Auto-update) cho trình duyệt để đảm bảo các bản vá lỗ hổng bảo mật quan trọng được áp dụng kịp thời. 
+Giải pháp phòng ngừa: 
+Luôn bật tính năng tự động cập nhật (Auto-update) cho trình duyệt để đảm bảo các bản vá lỗ hổng bảo mật quan trọng được áp dụng kịp thời. 
 - Tool: ChatGPT
 - Timestamp: 11:18 AM 23/09/2026
 
@@ -572,13 +572,3 @@ Kiểm soát toàn bộ hệ thống: Do tiến trình SSH chạy với đặc q
 - Prompt: AI Tool draws a QA/QC role mindmap
 - Tool: ChatGPT Pro
 - Timestamp: 14:34 PM 24/09/2026    
-
-51.
-- Prompt: hình của bạn chưa phân rõ role QA QC còn lặp quá nhiều, loại hình kiểm thử trộn các cấp độ khác nhau kìa
-- Tool: ChatGPT Pro
-- Timestamp: 14:40 PM 24/09/2026 
-
-52.
-- Prompt: Trong git repo chứa những gì
-- Tool: ChatGPT Pro
-- Timestamp: 15:20 PM 24/09/2026  
