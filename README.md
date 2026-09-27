@@ -1,1 +1,1 @@
-1. Phần AI Audit trong file Main report.pdf của em bị lỗi khoảng cách do em copy từ file AI-02 sang. Để có thể dễ dàng chấm điểm thầy cô đọc giúp em bên file AI-02 - AI Audit Report ạ !
+1. Phần AI Audit trong file Main report.pdf của em khi download file pdf hay word về đều bị lỗi khoảng cách trong bảng do em copy từ file AI-02 - AI Audit Report sang. Để có thể dễ dàng kiểm tra và chấm điểm, thầy cô đọc giúp em bên file AI-02 - AI Audit Report.pdf ạ ! Em cảm ơn thầy/cô
